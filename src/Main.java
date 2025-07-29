@@ -25,17 +25,20 @@ public class Main {
 
         double taxaRendimento = 0.5;
 
-        ContaCorrenteModel contaNicole = new ContaCorrenteModel(nicole);
-        ContaPoupancaModel contaRebeca = new ContaPoupancaModel(rebeca);
+        ContaModel contaNicole = new ContaCorrenteModel(nicole);
+        ContaModel contaRebeca = new ContaPoupancaModel(rebeca);
+
+        banco.getContasList().add(contaNicole);
+        banco.getContasList().add(contaRebeca);
 
         contaNicole.depositar(100);
         contaNicole.sacar(50);
-        contaNicole.transferir(contaNicole, 50);
+        ((ContaCorrenteModel)contaNicole).transferir(contaNicole, 50);
         contaNicole.exibirInformacoes();
 
         contaRebeca.depositar(300);
         contaRebeca.sacar(100);
-        contaRebeca.renderSaldo(taxaRendimento);
+        ((ContaPoupancaModel)contaRebeca).renderSaldo(taxaRendimento);
         contaRebeca.exibirInformacoes();
     }
 }
